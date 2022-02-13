@@ -11,7 +11,7 @@
 
 ## Manifesto
 
-I've worked with a lot of programming languages, and like some features not others. This section will outline the four design principles of TESA, for which it is named. Note the following should not be taken as a condemnation of certain styles of programming but rather as an expression of my personal preference.
+I've worked with a lot of programming languages, and like some features but not others. This section will outline the four design principles of TESA, for which it is named. Note the following should not be taken as a condemnation of certain styles of programming but rather as an expression of my personal preference.
 
 ### Terse
 
@@ -85,10 +85,12 @@ TESA strives to be elegant. Given its highly work-in-progress state its success 
  - **Unambiguity**
    - Bracketing is used to indicate order instead of operator precedence which must be memorized. (There are a few exceptions to this for brevity's sake but the rule holds in general.)
    - Mandatory whitespace separates different tokens (so nothing like the classic `while (i-->0)` is possible) but since this is always used other noisy separators, such as `,` or `;`, are not required.
- - **Different things are different and Equivalent things are equivalent**
+ - **Different things are different and equivalent things are equivalent**
+
    This is largely a function of the type system but extends into other areas.
    
    - Fundamentally different objects are recognized as such.
+
      `123` is a number and `"123"` is a string. The two types are fundamentally different.
      
      You will never find that your `123` has suddenly turned into a `"123"` or vice versa or that `(123 matches "123")` (I'm looking at you Javascript)
@@ -96,14 +98,16 @@ TESA strives to be elegant. Given its highly work-in-progress state its success 
      If you do need to turn a string into a number or a number into a string you can do so explicitly (`{repr 123}` or `{num "123"}`) or implicitly when and only when a type cast is the only logically desired effect (ie `{print 123}`)
    
    - Fundamentally equivalent objects are recognized as such.
+
      `"Abc"` is a string and `['A' 'b' 'c']` is an array of characters. The two objects are fundamentally the same.
      
      That is: there isn't generally a reason to distinguish between the two.
      
-     Therefore in TESA a string *is* an array of characters making `"Abc"` and `['A' 'b' 'c']` just different ways of constructing the same object in the same way that `3.14` and `(3 + 0.1 + 0.04)` are different ways of constructing the same object.
+     Therefore in TESA a string *is* an array of characters making `"Abc"` and `['A' 'b' 'c']` just different ways of constructing the same object in the same way that `3.14` and `(3 + 0.1 + 0.04)` are just different ways of constructing the same object.
  - **Providing Powerful, Generalized, Features**
    - Multidimensional and Infinite Arrays
-     Multidimensional arrays can be constructed in a variety of ways
+     
+     Multidimensional arrays are supported:
      ```tesa
      {merge [
        [1 2 3]
@@ -121,7 +125,7 @@ TESA strives to be elegant. Given its highly work-in-progress state its success 
      ```
      (by the way if you like this multi-dimensional array representation it was taken from [BQN](https://mlochbaum.github.io/BQN/))
      
-     Similarly, infinite arrays are supported
+     Similarly, infinite arrays are supported:
      ```tesa
      (2 ^ {<-> oo})
      ```
@@ -130,6 +134,7 @@ TESA strives to be elegant. Given its highly work-in-progress state its success 
      [ 1 2 4 8 16 32 64 128 256 512 1024 2048 4096 8192 16384 32768 ··· ]
      ```
    - Functional Programming
+   
      Functions are values and thereby can be passed around allowing you to do things like:
      ```tesa
      \/ => (-< - + *)
@@ -139,6 +144,7 @@ TESA strives to be elegant. Given its highly work-in-progress state its success 
      \/ => [a b] -> ((a + b) - (a * b))
      ```
    - Pervasive and Character Arithmetic
+   
      Arithmetic can be done on arrays too:
      ```tesa
      ([1 2 3] + 1)
@@ -176,11 +182,11 @@ TESA strives to be elegant. Given its highly work-in-progress state its success 
      
      And a limited subset of arithmetic (namely `+` and `-`) also work for characters:
      ```tesa
-     'C' - 'A'
+     'A' + 2
      ```
      is
      ```
-     2
+     'C'
      ```
      and
      ```tesa
@@ -246,6 +252,7 @@ TESA makes use of multi-character symbols or "ligatures" in order to represent a
  - `<->` is range
  - `\/` is or
  - `-<` is a fork
+ 
    and many more
 
 While the term ligature is not strictly accurate to describe simply a multi-character sequence it is recommended that you edit TESA code with a font that renders common multi-character sequences as true ligatures. The ligatures are however designed to be readable without any fancy fonts for those cases where they cannot be used.
@@ -258,15 +265,18 @@ While much of unicode can be rendered by most modern computers it is still unsup
  - Legacy systems
  - Many monospace fonts
  - Automatic tooling
-   and others.
+ 
+   among others
 
 It is also more difficult to input non-ascii characters into a computer, making writing code in a language that uses them slower and more annoying.
 
 That's not to say that TESA is opposed to non-ascii characters as it in fact quite happily supports the entirety of unicode:
  - Characters in TESA can represent any 32 bit unicode code-point
  - Character and string literals can include unicode characters just fine:
+ 
    `'ñ'` and `"cos(α) + cos(β)"` are both valid.
  - Unicode characters are valid in identifiers
+ 
    `Δt`, `x̄`, and `∫` are all valid variable names
  - TESA uses UTF-8 as it's primary text encoding method for source files
 
