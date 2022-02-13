@@ -1,5 +1,7 @@
 # TESA: Terse, Elegant, Symbolic Ascii
 
+A programming language.
+
 ## Table of Contents
 
  - [Table of Contents](#table-of-contents) (See Also: recursion)
