@@ -205,6 +205,7 @@ TESA strives to be elegant. Given its highly work-in-progress state its success 
      "abcdefghijklmnopqrstuvwxyz"
      ```
    - Generalizations of Common Functions
+     
      A number of common functions are generalized
      
      `+`, `*`, and others can take any number of arguments:
