@@ -3,4 +3,4 @@
 A programming language.
 
  - [Manifesto](./docs/manifesto.md)
- - [Language Specification](./docs/spec-main.md)
+ - [Language Specification](./docs/spec/main.md)
