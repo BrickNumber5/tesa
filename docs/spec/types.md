@@ -16,19 +16,19 @@ Of these types the first four are immutable[^1] and the last two are mutable[^2]
 Certain common types are not included in TESA, but these generally have replacements:
 
  - Ints and Floats are not separated.
- - Booleans are just the numbers `0` and `1`.
+ - Booleans are just the numbers `0` and `1`. The standard library also provides the constants [`FALSE`](./stdlib.md#false) and [`True`](./stdlib.md#true).
  - Strings are just one dimensional arrays of characters.
  - Objects, Maps, and various other types that associate keys to values are represented by the single container type.
 
-To get the type of an object in TESA the `typeof` function can be used. The exact return set of values for this function is left up to the implementation to determine but it is guaranteed that there will be six distinct values which can be compared using the `=`, `=/=`, `match`, and `not-match` functions. In practice implementers will want to use some sort of numerical enum or set of representation characters for the distinct values. The `TYPE` container in the standard library contains the variables `NONE`, `NUMBER`, `CHARACTER`, `ARRAY`, `FUNCTION`, and `CONTAINER` which can be compared against. (i.e. `{{typeof x} = TYPE.NUMBER}`) to check if a value is a number.
+To get the type of an object in TESA the [`typeof`](./builtins.md#typeof) function can be used. The exact return set of values for this function is left up to the implementation to determine but it is guaranteed that there will be six distinct values which can be compared using the `=`, `=/=`, [`match`](./builtins.md#match), and [`notMatch`](./builtins.md#notmatch) functions. In practice implementers will want to use some sort of numerical enum or set of representation characters for the distinct values. The [`TYPE`](./stdlib.md#type) container in the standard library contains the variables `NONE`, `NUMBER`, `CHARACTER`, `ARRAY`, `FUNCTION`, and `CONTAINER` which can be compared against. (i.e. `{{typeof x} = TYPE.NUMBER}`) to check if a value is a number.
 
 A few useful cast functions are provided:
 
- - `repr`, short for representation, converts an object of any type into a string. It can optionally take an additional second argument specifying formatting details.
- - `num` converts a string to a number or returns `·` if no such conversion is possible. It can optionally take a second argument specifying parsing rules.
- - `bool` converts an object of any type into either the number `0` or `1`. It cannot fail.
+ - [`repr`](./builtins.md#repr), short for representation, converts an object of any type into a string. It can optionally take an additional second argument specifying formatting details.
+ - [`num`](./stdlib.md#num) converts a string to a number or returns `·` if no such conversion is possible. It can optionally take a second argument specifying parsing rules.
+ - [`bool`](./builtins.md#bool) converts an object of any type into either the number `0` or `1`. It cannot fail.
 
-In some contexts an implicit cast to either a string (as is the case in `print`) or a boolean (as in `lor`) is unambiguously desired. In these cases the `repr` and `bool` functions are used internally.
+In some contexts an implicit cast to either a string (as is the case in [`print!`](./builtins.md#print)) or a boolean (as in [`lor`](./builtins.md#lor)) is unambiguously desired. In these cases the [`repr`](./builtins.md#repr) and [`bool`](./builtins.md#bool) functions are used internally.
 
 It should also be noted the following underlines the *user-facing* types of the language. Implementations may use more than one internal type per user facing type under the hood for various reasons including convenience and efficiency. However, these extra internal types should not be visible to user-programs.
 
@@ -42,7 +42,7 @@ None is the simplest type in TESA, having one possible value also called None. N
  - An empty expression `()`.
  - An unprovided function parameter.
  - An unset field in a container.
- - The `NONE` constant from the standard library
+ - The [`NONE`](./stdlib.md#none) constant from the standard library
    
    And more.
 
