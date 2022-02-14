@@ -123,7 +123,26 @@ Escape sequences start with a backslash (`\`) and have the following options. (S
 
 ## Array
 
-...
+An array is TESA in a rectangular data structure with an arbitrary number of dimensions. Along each dimension or "axis" there can be any non-negative integer number of cells. (Including infinity as a possible number of cells) The elements of an array can be of any type (including other arrays) and can be of mixed type. A number of builtin functions are available to get key properties of an array.
+
+ - `#` gets the number of items in an array.
+ - [`length`](./builtins.md#length) gets the number of items in the leading axis of an array.
+ - [`shape`](./builtins.md#shape) gets the a list of the lengths of the axes of an array.
+ - [`rank`](./builtins.md#rank) gets the number of axes in an array.
+
+### Literals
+
+Lists (1d arrays) can be constructed using square brackets (`[` and `]`).
+
+ - `[1 2 3]` is the list `[ 1 2 3 ]`
+ - The elements can be expressions. (i.e `[(2 * 3) ("ABC" + 1) ()]` is `[ 6 "BCD" · ]`)
+
+In order to create arrays of other shapes functions such as [`merge`](./builtins.md#merge) and [`reshape`](./builtins.md#reshape) must be used.
+
+### Type Conversions
+
+ - The `repr` of an array is highly complicated. See [`repr`](./builtins.md#repr) for details.
+ - `{bool a}` is `0` if and only if `{# a}` is `0`, otherwise it is `1`.
 
 ## Function
 
