@@ -16,7 +16,7 @@ Of these types the first four are immutable[^1] and the last two are mutable[^2]
 Certain common types are not included in TESA, but these generally have replacements:
 
  - Ints and Floats are not separated.
- - Booleans are just the numbers `0` and `1`. The standard library also provides the constants [`FALSE`](./stdlib.md#false) and [`True`](./stdlib.md#true).
+ - Booleans are just the numbers `0` and `1`. The standard library also provides the constants [`FALSE`](./stdlib.md#false) and [`TRUE`](./stdlib.md#true).
  - Strings are just one dimensional arrays of characters.
  - Objects, Maps, and various other types that associate keys to values are represented by the single container type.
 
@@ -109,7 +109,7 @@ A character in TESA represents a single unicode code-point. This means that stri
 
 Escape sequences start with a backslash (`\`) and have the following options. (Stealing from C, like everyone else)
 
- - `\a`, `\b`, `\e`, `\f`, `\n`, `\r`, `\t`, `\v` for ␇, ␈, ␛, ␛, ␊, ␍, ␉, and ␋ respectively.
+ - `\a`, `\b`, `\e`, `\f`, `\n`, `\r`, `\t`, `\v` for ␇, ␈, ␛, ␌, ␊, ␍, ␉, and ␋ respectively.
  - `\\`, `\'`, and `\"` for `\`, `'`, and `"` respectively.
  - `\n`, `\nn`, and `\nnn` for the character with the corresponding 1-3 digit octal code point.
  - `\xdd` for the character with the corresponding 2 digit hexadecimal code point.
