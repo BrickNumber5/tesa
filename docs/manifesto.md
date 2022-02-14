@@ -84,7 +84,7 @@ TESA strives to be elegant. Given its highly work-in-progress state its success 
      
      You will never find that your `123` has suddenly turned into a `"123"` or vice versa or that `(123 matches "123")` (I'm looking at you Javascript)
      
-     If you do need to turn a string into a number or a number into a string you can do so explicitly (`{repr 123}` or `{num "123"}`) or implicitly when and only when a type cast is the only logically desired effect (ie `{print 123}`)
+     If you do need to turn a string into a number or a number into a string you can do so explicitly (`{repr 123}` or `{num "123"}`) or implicitly when and only when a type cast is the only logically desired effect (ie `{print! 123}`)
    
    - Fundamentally equivalent objects are recognized as such.
 
@@ -209,7 +209,7 @@ TESA strives to be elegant. Given its highly work-in-progress state its success 
      Functions like `each` and `over` are generalized beyond their standard definitions.
      For instance `each` can act like a traditional `each` or `map` function or like a `zipWith` function depending on the number of arguments.
      ```tesa
-     {{each print} [1 2 3]}
+     {{each print!} [1 2 3]}
      ```
      prints
      ```
@@ -227,11 +227,11 @@ TESA strives to be elegant. Given its highly work-in-progress state its success 
      
      Furthermore functions like `each` and `foldr` take their functional arguments and list arguments in two separate calls allowing partial application for pointfree code:
      ```tesa
-     printall => {each print}
+     printall! => {each print!}
      ```
      is the same as
      ```tesa
-     printall => [arr] -> {{each print} arr}
+     printall! => [arr] -> {{each print!} arr}
      ```
 
 ## Symbolic
