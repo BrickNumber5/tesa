@@ -54,8 +54,8 @@ There is no literal for None so the most common ways of explicitly obtaining the
 
 ### Type Conversions
 
- - `{repr NONE}` is `"·"` (that's the middle dot).
- - `{bool NONE}` is `0`.
+ - `{repr ()}` is `"·"` (that's the middle dot).
+ - `{bool ()}` is `0`.
 
 ## Number
 
@@ -146,9 +146,34 @@ In order to create arrays of other shapes functions such as [`merge`](./builtins
 
 ## Function
 
-...
+A function in TESA is a first class value taking in zero or more values and returning some value as the result of an expression. Functions in TESA may or may not be pure functions (which can be tested with the [`pure?`](./builtins.md#pure) predicate) and they can also be forced to be pure using [`latch`](./builtins.md#latch). A function in TESA is considered to be pure even if it contains side effects within its body as long as those side effects do not leak.
+
+### Literals
+
+Functions are constructed using a single arrow `->` with a pattern on the left side representing the function's arguments as a list, and an expression on the right.
+
+ - `[a b t] -> ((a * t) + (b * 1 - t))` is the lerp function.
+
+### Type Conversions
+
+ - `{repr f}` is `"(->)"`.
+ - `{bool f}` is `1`.
 
 ## Container
 
-...
+A container in TESA is a mapping from keys (which can be of any type) to values. A container may contain immutable keys, mutable keys, or a mixture and may allow additional keys to be added by making the default key (`·`) mutable.
 
+### Literals
+
+Containers are constructed using square brackets, like arrays, but with double arrows (`=>` or `/=>`) inside them associating keys and values. The keys may be either patterns or expressions (defaulting to the former). If patterns are used the keys are interpreted as strings. Using none as a key in the definition doesn't create an actual pairing but does make it so additional keys can be added if it is set as mutable.
+
+ - `[=>]` is an empty container (using autocompleted pattern `__` and autocompleted expression `()`).
+ - `['a' => 0 'b' => 1 'c' => 2]` contains three character keys.
+ - `[foo => "bar" baz => 17]` is equivalent to `["foo" => "bar" "baz" => 17]`.
+ - In `[(foo) => bar]` both the key and value are determined by expressions. The key is not `"foo"` but the value referenced by `foo`.
+ - `[/=>]` is an empty container which allows appending additional keys.
+
+### Type Conversions
+
+ - `{repr C}` is generally similar to a container literal but this can be changed by adding a `USR-REPR-FN` key to the container. See [`repr`](./builtins.md#repr) for details.
+ - `{bool C}` is `0` if and only if the container contains no keys set to a non-none value. (As none keys are equivalent to unset keys) It is `1` otherwise.
